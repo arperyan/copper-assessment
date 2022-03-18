@@ -1,0 +1,16 @@
+{
+  "name": "@copper/frontend-test-assesment",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3"
+  },
+  "scripts": {
+    "mock-server": "node mock-server/server.js"
+  },
+  "proxy": "http://localhost:3002",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}

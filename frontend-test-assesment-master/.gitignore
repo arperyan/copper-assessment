@@ -1,0 +1,9 @@
+.DS_Store
+.yarn-cache
+ssl/
+node_modules/
+build
+.idea
+yarn-error.log
+dist
+src/.shared
