@@ -47,12 +47,17 @@ export const ordersSlice = createSlice({
                     return acc + convertToUSD(value.baseCurrency, value.amount);
                 }, 0);
 
+                const orderWithRatesSort = ordersWithRates.sort(
+                    (firstCompare: OrderItems, secondCompare: OrderItems) =>
+                        parseFloat(firstCompare.createdAt) - parseFloat(secondCompare.createdAt)
+                );
+
                 convertToCurrency = convertNumberFormat(orderAmountSum);
 
                 state.loading = false;
                 state.hasErrors = false;
                 state.tickCount = ordersWithRates.length;
-                state.orders = ordersWithRates;
+                state.orders = orderWithRatesSort;
                 state.orderAmount = convertToCurrency;
             }) //Get Order from API - pending
             .addCase(GetOrders.pending, (state) => {

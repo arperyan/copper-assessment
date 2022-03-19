@@ -1,4 +1,73 @@
 .table_container {
-    width: 100%;
-    padding: 1.5rem;
+    padding: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 1px solid var(--color-border);
+    height: 2rem;
+}
+
+thead > * + * {
+    padding-left: 1.5rem;
+}
+
+th {
+    height: 2rem;
+    font-size: 0.75em;
+    font-weight: normal;
+    line-height: 14px;
+    color: var(--color-deep-grey);
+}
+
+td {
+    border-bottom: 1px solid var(--color-border);
+
+    height: 3.5rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: var(--color-almost-white);
+}
+
+th,
+td {
+    padding-right: 1.5rem;
+    text-align: left;
+}
+
+td:first-child,
+th:first-child {
+    padding-left: 1.5rem;
+}
+
+th:last-child,
+th:nth-last-child(2),
+td:nth-last-child(2) {
+    /* width: 100%; */
+    text-align: end;
+}
+
+td:nth-child(2) {
+    white-space: wrap;
+}
+
+.buttongroup {
+    text-align: end;
+}
+
+.buttongroup > * + * {
+    margin-left: 0.75rem;
+}
+
+.active {
+    background-color: var(--color-oxide);
+    opacity: 0.1;
 }

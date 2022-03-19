@@ -35,6 +35,12 @@
 .figures_container_title {
     width: 5.1rem;
 }
+
+.figures_container_title__value {
+    font-weight: 600;
+    font-size: 1.125em;
+}
+
 .figures_container_title__wider {
     width: 8rem;
 }
@@ -56,4 +62,8 @@
 .button_container {
     display: flex;
     gap: 1rem;
+}
+
+.vertical_line {
+    border-left: 1px solid var(--color-border);
 }

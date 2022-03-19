@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import TableRow from "./TableRow";
 import TableHeader from "./TableHeader";
+import Input from "../../ui/Input";
 
 import type { OrderItems } from "../../types";
 
@@ -17,7 +18,16 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
         <table className={styles.table_container}>
             <thead>
                 <tr>
-                    <td></td>
+                    <th>
+                        <Input
+                            id="0"
+                            //value={}
+                            type="checkbox"
+                            name="All selected"
+                            //isChecked={isChecked}
+                            //onInputChange={getCheckBoxInput}
+                        ></Input>
+                    </th>
                     {theadData.map((headerItem, i) => {
                         return <TableHeader key={`header-${i}`} headerItem={headerItem} />;
                     })}

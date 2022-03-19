@@ -34,51 +34,54 @@ const Layout: React.FC = () => {
                         <div className={styles.figures_container_title__order}>
                             {orderSelected.length > 0 ? "Selected orders" : "All orders"}
                         </div>
-                        <div>{tickCount}</div>
+                        <div className={styles.figures_container_title__value}>{tickCount}</div>
                     </div>
+                    <div className={styles.vertical_line}></div>
                     <div className={styles.figures_container_title__longer}>
                         <div className={styles.figures_container_title__amount}>
-                            {orderSelected.length > 0 ? "Selected amount" : "Total amount"}
+                            {orderSelected.length > 0 ? "Total selected amount" : "Total amount"}
                         </div>
-                        <div>{orderAmount}</div>
+                        <div className={styles.figures_container_title__value}>{orderAmount} USD</div>
                     </div>
                 </div>
-                <div className={styles.button_container}>
-                    <Button
-                        label="Reject"
-                        type="reject"
-                        disabled={!orderSelected.length}
-                        onPress={() => {
-                            orderSelected.length
-                                ? dispatch(
-                                      UpdateBulkOrder({
-                                          updateType: "bulk-reject",
-                                          orderIds: orderSelected,
-                                      })
-                                  )
-                                : "";
-                        }}
-                    >
-                        Reject
-                    </Button>
-                    <Button
-                        label="Approve"
-                        type="accept"
-                        disabled={!orderSelected.length}
-                        onPress={() => {
-                            orderSelected.length
-                                ? dispatch(
-                                      UpdateBulkOrder({
-                                          updateType: "bulk-approve",
-                                          orderIds: orderSelected,
-                                      })
-                                  )
-                                : "";
-                        }}
-                    >
-                        Accept
-                    </Button>
-                </div>
+                {orderSelected.length > 0 && (
+                    <div className={styles.button_container}>
+                        <Button
+                            label="Reject"
+                            type="reject"
+                            disabled={!orderSelected.length}
+                            onPress={() => {
+                                orderSelected.length
+                                    ? dispatch(
+                                          UpdateBulkOrder({
+                                              updateType: "bulk-reject",
+                                              orderIds: orderSelected,
+                                          })
+                                      )
+                                    : "";
+                            }}
+                        >
+                            Reject
+                        </Button>
+                        <Button
+                            label="Approve"
+                            type="accept"
+                            disabled={!orderSelected.length}
+                            onPress={() => {
+                                orderSelected.length
+                                    ? dispatch(
+                                          UpdateBulkOrder({
+                                              updateType: "bulk-approve",
+                                              orderIds: orderSelected,
+                                          })
+                                      )
+                                    : "";
+                            }}
+                        >
+                            Accept
+                        </Button>
+                    </div>
+                )}
             </div>
 
             <Table theadData={theadData} orders={orders}></Table>

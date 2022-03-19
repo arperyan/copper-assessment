@@ -1,11 +1,19 @@
-export const convertDate = (value: string): {} => {
+export const convertDate = (
+    value: string
+): { getConvertMonth: string; getConvertTime: string; getConvertDay: number } => {
     const convertDate = new Date(parseInt(value));
+    const getConvertMonth = convertDate.toLocaleString("en-gb", { month: "short" });
+    const getConvertDay = convertDate.getDate();
+    const getConvertTime = convertDate.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+    });
 
-    const getConvertMonthDay = `${convertDate.toLocaleString("en-gb", { month: "short" })} ${convertDate.getDate()}`;
-    const getConvertTime = convertDate.getTime();
-
+    console.log(convertDate);
     return {
-        getConvertMonthDay,
+        getConvertMonth,
+        getConvertDay,
         getConvertTime,
     };
 };
