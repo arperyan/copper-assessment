@@ -126,7 +126,7 @@ export const ordersSlice = createSlice({
                 state.orderSelected = value;
 
                 const orderAmountSelectedSum: any = state.orders.reduce((acc: any, value: OrderItems) => {
-                    return acc + convertToUSD(value.baseCurrency, value.amount);
+                    return value.status !== "executed" ? acc + convertToUSD(value.baseCurrency, value.amount) : acc;
                 }, 0);
 
                 console.log(state.orderSelected.length, convertToCurrency);
