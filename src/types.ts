@@ -17,6 +17,7 @@ export type OrderItems = {
     quoteAmount: number;
     quoteCurrency: string;
     USDAmount?: number;
+    status?: string;
 };
 
 export type ThunkType = {
@@ -36,9 +37,14 @@ export type OrderStates = {
     tickCount: number;
     orderSelected: string[];
     orderAmount: number | string;
+    allOrderSelected: string[];
 };
 
 export type SelectedCount = {
     checked: boolean;
     value: string;
+};
+
+export type SelectedGroupCount = {
+    value: string[];
 };

@@ -1,6 +1,7 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { selectedGroupCount } from "../../redux/ordersSlice";
 import TableRow from "./TableRow";
 import TableHeader from "./TableHeader";
 import Input from "../../ui/Input";
@@ -16,8 +17,18 @@ type Props = {
 };
 
 const Table: React.FC<Props> = ({ theadData, orders }) => {
-    const { orderSelected, loading, hasErrors } = useSelector((state: RootState) => state.orders);
+    const [isAllChecked, isAllCheckedSet] = useState<boolean>(false);
+    const [allOrders, allOrdersSet] = useState<string[]>([]);
 
+    const dispatch = useDispatch();
+
+    const { loading, hasErrors, allOrderSelected } = useSelector((state: RootState) => state.orders);
+
+    const getCheckBoxAllInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        isAllCheckedSet((prev) => !prev);
+
+        dispatch(selectedGroupCount({ value: event.target.checked ? allOrderSelected : [] }));
+    };
     return (
         <table className={styles.table_container}>
             <thead>
@@ -25,12 +36,11 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
                     <th>
                         <Input
                             id="0"
-                            //value={}
+                            value={allOrders}
                             type="checkbox"
-                            isActive={orderSelected.length > 0 ? true : false}
                             name="All selected"
-                            //isChecked={isChecked}
-                            //onInputChange={getCheckBoxInput}
+                            isChecked={isAllChecked}
+                            onInputChange={getCheckBoxAllInput}
                         ></Input>
                     </th>
                     {theadData.map((headerItem, i) => {
@@ -43,7 +53,7 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
             {hasErrors && <Messages message="Error while loading..." />}
             <tbody>
                 {orders.map((rowData, i) => {
-                    return <TableRow key={rowData.orderId} rowData={rowData}></TableRow>;
+                    return <TableRow key={rowData.orderId} rowData={rowData} isAllChecked={isAllChecked}></TableRow>;
                 })}
             </tbody>
         </table>

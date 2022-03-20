@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { selectedCount } from "../../redux/ordersSlice";
@@ -13,12 +13,17 @@ import { OrderItems } from "../../types";
 
 type Props = {
     rowData: OrderItems;
+    isAllChecked: boolean;
 };
 
-const TableRow: React.FC<Props> = ({ rowData }) => {
+const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
     const [isChecked, isCheckedSet] = useState<boolean>(false);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        isCheckedSet(isAllChecked);
+    }, [isAllChecked]);
 
     const getCheckBoxInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         isCheckedSet((prev) => !prev);

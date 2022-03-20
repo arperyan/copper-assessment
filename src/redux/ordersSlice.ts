@@ -2,10 +2,11 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 
 import { GetOrders, UpdateBulkOrder, UpdateOrder } from "../api";
 
-import type { OrderItems, OrderStates, SelectedCount } from "../types";
+import type { OrderItems, OrderStates, SelectedCount, SelectedGroupCount } from "../types";
 import { convertNumberFormat } from "../util";
 
 export const selectedCount = createAction<SelectedCount>("selectedCount");
+export const selectedGroupCount = createAction<SelectedGroupCount>("selectedGroupCount");
 
 let currencyApi: any[] = [];
 
@@ -15,6 +16,12 @@ const convertToUSD = (baseCurrency: string, amount: number) => {
     return currencyObj._embedded.price.price * amount;
 };
 
+const orderArray = (orders: OrderItems[]) => {
+    return orders.reduce((acc: any, value: any): string[] => {
+        return value.status !== "executed" ? [...acc, value.orderId] : acc;
+    }, []);
+};
+
 const initialState: OrderStates = {
     orders: [],
     loading: false,
@@ -22,6 +29,7 @@ const initialState: OrderStates = {
     tickCount: 0,
     orderSelected: [],
     orderAmount: "",
+    allOrderSelected: [],
 };
 
 let convertToCurrency: string;
@@ -54,6 +62,7 @@ export const ordersSlice = createSlice({
 
                 convertToCurrency = convertNumberFormat(orderAmountSum);
 
+                state.allOrderSelected = orderArray(orders);
                 state.loading = false;
                 state.hasErrors = false;
                 state.tickCount = ordersWithRates.length;
@@ -78,12 +87,20 @@ export const ordersSlice = createSlice({
                     ...action.payload,
                     USDAmount: convertToUSD(state.orders[orderIndex].baseCurrency, state.orders[orderIndex].amount),
                 };
+
+                state.allOrderSelected = orderArray(state.orders);
             }) //Update Bulk orders from API - success
             .addCase(UpdateBulkOrder.fulfilled, (state, action) => {
                 state.orders = action.payload.map((obj: OrderItems) => ({
                     ...obj,
                     USDAmount: convertToUSD(obj.baseCurrency, obj.amount),
                 }));
+
+                state.allOrderSelected = orderArray(state.orders);
+
+                state.orderAmount = convertToCurrency;
+                state.orderSelected = [];
+                state.tickCount = state.orders.length;
             }) //Get Selected count for the headers - the amount and number of orders selected
             .addCase(selectedCount, (state, action) => {
                 const { checked, value } = action.payload;
@@ -98,6 +115,21 @@ export const ordersSlice = createSlice({
                         : acc;
                 }, 0);
 
+                state.tickCount = state.orderSelected.length > 0 ? state.orderSelected.length : state.orders.length;
+                state.orderAmount =
+                    state.orderSelected.length > 0 ? convertNumberFormat(orderAmountSelectedSum) : convertToCurrency;
+            })
+
+            .addCase(selectedGroupCount, (state, action) => {
+                const { value } = action.payload;
+                console.log(value);
+                state.orderSelected = value;
+
+                const orderAmountSelectedSum: any = state.orders.reduce((acc: any, value: OrderItems) => {
+                    return acc + convertToUSD(value.baseCurrency, value.amount);
+                }, 0);
+
+                console.log(state.orderSelected.length, convertToCurrency);
                 state.tickCount = state.orderSelected.length > 0 ? state.orderSelected.length : state.orders.length;
                 state.orderAmount =
                     state.orderSelected.length > 0 ? convertNumberFormat(orderAmountSelectedSum) : convertToCurrency;

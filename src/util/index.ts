@@ -10,7 +10,6 @@ export const convertDate = (
         hour12: true,
     });
 
-    console.log(convertDate);
     return {
         getConvertMonth,
         getConvertDay,

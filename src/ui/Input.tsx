@@ -4,7 +4,7 @@ import styles from "./input.module.css";
 
 type Props = {
     id: string;
-    value: string;
+    value: string | string[];
     name: string;
     onInputChange: React.ChangeEventHandler<HTMLInputElement>;
     type: string;
@@ -13,7 +13,6 @@ type Props = {
 };
 
 const Input: React.FC<Props> = ({ id, value, name, isChecked, type, isActive, onInputChange }) => {
-    console.log(isActive);
     return (
         <>
             <label className={`${styles.checkbox}  ${isActive ? styles.allActive : ""}`} htmlFor={id}>
