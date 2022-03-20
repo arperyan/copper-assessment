@@ -33,7 +33,7 @@ tr:last-child td {
     border-bottom: none;
 }
 
-tr:hover {
+tr:hover:not(:first-child) {
     background-color: var(--color-almost-white);
 }
 

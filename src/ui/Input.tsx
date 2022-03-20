@@ -9,12 +9,14 @@ type Props = {
     onInputChange: React.ChangeEventHandler<HTMLInputElement>;
     type: string;
     isChecked: boolean;
+    isActive?: boolean;
 };
 
-const Input: React.FC<Props> = ({ id, value, name, isChecked, type, onInputChange }) => {
+const Input: React.FC<Props> = ({ id, value, name, isChecked, type, isActive, onInputChange }) => {
+    console.log(isActive);
     return (
         <>
-            <label className={styles.checkbox} htmlFor={id}>
+            <label className={`${styles.checkbox}  ${isActive ? styles.allActive : ""}`} htmlFor={id}>
                 <input
                     id={id}
                     value={value}
@@ -24,7 +26,7 @@ const Input: React.FC<Props> = ({ id, value, name, isChecked, type, onInputChang
                     aria-label={name}
                     onChange={onInputChange}
                 />
-                <span className={styles.checkmark}></span>
+                <span className={`${styles.checkmark} ${isActive ? styles.allActive_checkmark : ""}`}></span>
             </label>
         </>
     );

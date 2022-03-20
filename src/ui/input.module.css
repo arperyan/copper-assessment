@@ -1,4 +1,4 @@
-.checkbox {
+.checkbox:not(.allActive) {
     display: block;
     position: relative;
     margin-bottom: 1.13rem;
@@ -16,7 +16,7 @@
 }
 
 /* Create a custom checkbox */
-.checkmark {
+.checkmark:not(.allActive) {
     position: absolute;
     top: 0;
     left: 0;
@@ -53,4 +53,27 @@
     border: solid var(--color-oxide);
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
+}
+
+/* THe All checked box */
+
+.allActive {
+    display: block;
+    position: relative;
+    margin-bottom: 1.13rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.allActive_checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.125rem;
+    width: 1.125rem;
+    border-radius: 2px;
+}
+
+.allActive .allActive_checkmark {
+    border-top: 3px solid;
 }

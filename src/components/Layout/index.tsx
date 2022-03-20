@@ -41,7 +41,9 @@ const Layout: React.FC = () => {
                         <div className={styles.figures_container_title__amount}>
                             {orderSelected.length > 0 ? "Total selected amount" : "Total amount"}
                         </div>
-                        <div className={styles.figures_container_title__value}>{orderAmount} USD</div>
+                        <div className={styles.figures_container_title__value}>
+                            {loading ? "0.00" : orderAmount} USD
+                        </div>
                     </div>
                 </div>
                 {orderSelected.length > 0 && (

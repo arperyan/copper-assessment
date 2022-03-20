@@ -64,7 +64,7 @@ const TableRow: React.FC<Props> = ({ rowData }) => {
                     >
                         {rowData.orderType[0].toUpperCase()}
                     </text>
-                    <text x="50%" y="85%" dominantBaseline="middle" textAnchor="middle" fontSize="9">
+                    <text x="50%" y="90%" dominantBaseline="middle" textAnchor="middle" fontSize="9">
                         {getConvertTime}
                     </text>
                 </svg>

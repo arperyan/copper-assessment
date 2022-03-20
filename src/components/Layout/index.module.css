@@ -4,7 +4,7 @@
     justify-items: center;
     background-color: var(--color-white);
     border-radius: 6px;
-    width: clamp(400px, 1180px, 1180px);
+    width: clamp(300px, 1180px, 1180px);
 }
 
 .header_container {
@@ -29,11 +29,15 @@
 
 .figures_container {
     display: flex;
-    gap: 2rem;
+    width: 40%;
 }
 
 .figures_container_title {
     width: 5.1rem;
+}
+
+.figures_container_title__longer {
+    padding-left: 1rem;
 }
 
 .figures_container_title__value {
@@ -49,7 +53,7 @@
     color: var(--color-deep-grey);
     line-height: 1.3em;
     font-size: 0.69em;
-    padding: 6px 0;
+    padding: 0.4375rem 0;
 }
 
 .figures_container_title__amount {
@@ -66,4 +70,10 @@
 
 .vertical_line {
     border-left: 1px solid var(--color-border);
+}
+
+@media (max-width: 56.25em) {
+    .container {
+        width: 100%;
+    }
 }
