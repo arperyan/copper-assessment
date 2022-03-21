@@ -9,7 +9,8 @@
     --color-grey: #ced7d7;
     --color-border: #e6eaea;
     --color-slate: #bdc6cf;
-    --color-deep-grey: #86939e;
+    --color-deep-grey: #4e565c; /* chnaged because not right contrast */
+    --color-deep-grey-accessibilty: #4e565c;
     --color-lime: #d2ffd8;
     --color-orange: #ffecd2;
     --color-hover-oxide: #6cead51a;
