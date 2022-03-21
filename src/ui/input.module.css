@@ -75,5 +75,20 @@
 }
 
 .allActive .allActive_checkmark {
-    border-top: 3px solid;
+    border: 2px solid var(--color-oxide);
+}
+
+.line {
+    border-top: 2px solid var(--color-oxide);
+    position: absolute;
+    top: 8.5px;
+    left: 0;
+    height: 0.5rem;
+    width: 0.5rem;
+    margin: 0 5px;
+}
+
+input[disabled] ~ .checkmark {
+    opacity: 0.1;
+    cursor: default;
 }

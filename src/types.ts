@@ -18,6 +18,8 @@ export type OrderItems = {
     quoteCurrency: string;
     USDAmount?: number;
     status?: string;
+    baseName: string;
+    quoteName: string;
 };
 
 export type ThunkType = {

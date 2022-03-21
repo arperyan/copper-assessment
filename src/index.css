@@ -2,16 +2,18 @@
 
 :root {
     --color-white: #ffffff;
-    --color-almost-white: #f8fafa;
-    --color-oxide: #6aead4;
+    --color-almost-white: #f6f9f9;
+    --color-oxide: #6cead5;
     --color-dark: #18191d;
     --color-black: #000000;
     --color-grey: #ced7d7;
     --color-border: #e6eaea;
     --color-slate: #bdc6cf;
     --color-deep-grey: #86939e;
-    --color-lime: #D2FFD8
-    --color-orange: #FFECD2
+    --color-lime: #d2ffd8;
+    --color-orange: #ffecd2;
+    --color-hover-oxide: #6cead51a;
+    --color-hoover-almost-white: #f6f9f91a;
 
     --box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04), 0px 2px 1px rgba(85, 98, 98, 0.04);
 }
@@ -43,6 +45,6 @@ html {
 @media (max-width: 56.25em) {
     body {
         font-size: 10px;
-        overflow: scroll
+        overflow: scroll;
     }
 }

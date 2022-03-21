@@ -10,9 +10,10 @@ type Props = {
     type: string;
     isChecked: boolean;
     isActive?: boolean;
+    isDisabled?: boolean;
 };
 
-const Input: React.FC<Props> = ({ id, value, name, isChecked, type, isActive, onInputChange }) => {
+const Input: React.FC<Props> = ({ id, value, name, isChecked, type, isActive, isDisabled, onInputChange }) => {
     return (
         <>
             <label className={`${styles.checkbox}  ${isActive ? styles.allActive : ""}`} htmlFor={id}>
@@ -23,9 +24,11 @@ const Input: React.FC<Props> = ({ id, value, name, isChecked, type, isActive, on
                     name={name}
                     checked={isChecked}
                     aria-label={name}
+                    disabled={isDisabled}
                     onChange={onInputChange}
                 />
                 <span className={`${styles.checkmark} ${isActive ? styles.allActive_checkmark : ""}`}></span>
+                {isActive && !isChecked && <span className={styles.line}></span>}
             </label>
         </>
     );

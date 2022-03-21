@@ -6,10 +6,12 @@ import { convertDate } from "../../util";
 import { UpdateOrder } from "../../api";
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
-
-import styles from "./index.module.css";
+import Icon from "../../ui/Icon";
+import Tag from "../../ui/Tag";
 
 import { OrderItems } from "../../types";
+
+import styles from "./index.module.css";
 
 type Props = {
     rowData: OrderItems;
@@ -34,14 +36,15 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
     let { getConvertMonth, getConvertDay, getConvertTime } = convertDate(rowData.createdAt);
 
     return (
-        <tr>
+        <tr className={isChecked && rowData.status !== "executed" ? styles.rowActive : ""}>
             <td>
                 <Input
-                    id={rowData.orderId.substring(0, 3)}
+                    id={rowData.orderId.substring(0, 4)}
                     value={rowData.orderId}
                     type="checkbox"
                     name="Order Selector"
-                    isChecked={isChecked}
+                    isChecked={rowData.status === "executed" ? false : isChecked}
+                    isDisabled={rowData.status === "executed" ? true : false}
                     onInputChange={getCheckBoxInput}
                 ></Input>
             </td>
@@ -76,22 +79,62 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
             </td>
             <td>{rowData.portfolioName}</td>
             <td>
-                <div>{rowData.baseCurrency}</div>
-                <div>{rowData.quoteCurrency}</div>
+                <div className={styles.currency}>
+                    <Icon name={rowData.baseCurrency}></Icon>
+                    <div className={styles.grow}>
+                        <div className={styles.currency_name}>{rowData.baseName}</div>
+                        <div className={styles.currency_small}>{rowData.baseCurrency}</div>
+                    </div>
+                    <div className={styles.arrow}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            fill="#000000"
+                        >
+                            <rect fill="none" height="24" width="24" />
+                            <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
+                        </svg>
+                    </div>
+                    <Icon name={rowData.quoteCurrency}></Icon>
+                    <div className={styles.grow}>
+                        <div className={styles.currency_name}>{rowData.quoteName}</div>
+                        <div className={styles.currency_small}>{rowData.quoteCurrency}</div>
+                    </div>
+                </div>
             </td>
-            <td>{rowData.amount}</td>
-            <td className={styles.buttongroup}>
-                <Button
-                    label="Reject"
-                    type="reject"
-                    onPress={() => dispatch(UpdateOrder({ updateType: "reject", orderId: rowData.orderId }))}
-                ></Button>
-                <Button
-                    label="Approve"
-                    type="accept"
-                    onPress={() => dispatch(UpdateOrder({ updateType: "approve", orderId: rowData.orderId }))}
-                ></Button>
+            <td>
+                <div className={styles.grow}>
+                    <div className={styles.amount_name}>
+                        <span>{rowData.amount}</span>
+                        <span className={styles.currency_small__amount}>{rowData.baseCurrency}</span>
+                    </div>
+                    <div className={styles.currency_small}>
+                        {rowData.quoteAmount}
+                        <span className={styles.currency_small__amount}>{rowData.quoteCurrency}</span>
+                    </div>
+                </div>
             </td>
+            {rowData.status !== "executed" && (
+                <td className={styles.buttongroup}>
+                    <Button
+                        label="Reject"
+                        type="reject"
+                        onPress={() => dispatch(UpdateOrder({ updateType: "reject", orderId: rowData.orderId }))}
+                    ></Button>
+                    <Button
+                        label="Approve"
+                        type="accept"
+                        onPress={() => dispatch(UpdateOrder({ updateType: "approve", orderId: rowData.orderId }))}
+                    ></Button>
+                </td>
+            )}
+            {rowData.status === "executed" && (
+                <td className={styles.buttongroup}>
+                    <Tag />
+                </td>
+            )}
         </tr>
     );
 };

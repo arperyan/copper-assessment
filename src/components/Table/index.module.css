@@ -4,6 +4,7 @@
 
 table {
     border-collapse: collapse;
+    font-size: 0.875em;
 }
 
 thead {
@@ -43,6 +44,11 @@ td {
     text-align: left;
 }
 
+td:nth-child(4) {
+    vertical-align: top;
+    padding-top: 0.8rem;
+}
+
 td:first-child,
 th:first-child {
     padding-left: 1.5rem;
@@ -69,5 +75,43 @@ td:nth-child(2) {
 
 .active {
     background-color: var(--color-oxide);
-    opacity: 0.1;
+}
+
+.rowActive {
+    background: var(--color-hover-oxide);
+}
+
+.currency {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.currency_name {
+    width: max(40%, 9rem);
+    padding: 0.6rem 0;
+}
+
+.amount_name {
+    padding: 0.6rem 0;
+}
+
+.currency_small {
+    font-size: 0.645em;
+    color: var(--color-deep-grey);
+}
+
+.currency_small__amount {
+    font-size: 0.5625rem;
+    color: var(--color-deep-grey);
+    width: 1rem;
+    padding-left: 0.5rem;
+}
+
+.arrow {
+    padding-left: 4.188rem;
+}
+
+.grow {
+    width: 100%;
 }

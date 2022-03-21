@@ -18,11 +18,10 @@ type Props = {
 
 const Table: React.FC<Props> = ({ theadData, orders }) => {
     const [isAllChecked, isAllCheckedSet] = useState<boolean>(false);
-    const [allOrders, allOrdersSet] = useState<string[]>([]);
 
     const dispatch = useDispatch();
 
-    const { loading, hasErrors, allOrderSelected } = useSelector((state: RootState) => state.orders);
+    const { orderSelected, loading, hasErrors, allOrderSelected } = useSelector((state: RootState) => state.orders);
 
     const getCheckBoxAllInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         isAllCheckedSet((prev) => !prev);
@@ -36,9 +35,10 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
                     <th>
                         <Input
                             id="0"
-                            value={allOrders}
+                            value={allOrderSelected}
                             type="checkbox"
                             name="All selected"
+                            isActive={orderSelected.length > 0 ? true : false}
                             isChecked={isAllChecked}
                             onInputChange={getCheckBoxAllInput}
                         ></Input>

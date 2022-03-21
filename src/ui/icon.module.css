@@ -1,0 +1,71 @@
+.BTC {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/btc.svg");
+    background-repeat: no-repeat;
+}
+
+.ETH {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/eth.svg");
+    background-repeat: no-repeat;
+}
+
+.BSC {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/bsc.svg");
+    background-repeat: no-repeat;
+}
+
+.XRP {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/xrp.svg");
+    background-repeat: no-repeat;
+}
+
+.DOGE {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/doge.svg");
+    background-repeat: no-repeat;
+}
+
+.EOS {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/eos.svg");
+    background-repeat: no-repeat;
+}
+
+.ETC {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/etc.svg");
+    background-repeat: no-repeat;
+}
+
+.DASH {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/dash.svg");
+    background-repeat: no-repeat;
+}
+
+.MOB {
+    display: block;
+    height: 2.5em;
+    min-width: 1.715em;
+    background: url("https://cdn.copper.co/static/currencies/mob.svg");
+    background-repeat: no-repeat;
+}

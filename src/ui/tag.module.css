@@ -1,0 +1,12 @@
+.tag {
+    padding: 0em 1.115em;
+    line-height: 1.5625em;
+    font-size: 0.9em;
+    border-radius: 100px;
+    color: var(--color-white);
+    border: none;
+    height: 2.25em;
+    width: 6.25em;
+    color: var(--color-deep-grey);
+    font-size: 0.5625rem;
+}
