@@ -1,11 +1,9 @@
-import styles from "./tag.module.css";
+import s from './tag.module.css';
 
-const Tag = () => {
-    return (
-        <button type="button" className={styles.tag} aria-label="complete" disabled={true}>
-            Complete
-        </button>
-    );
-};
+const Tag = () => (
+    <button type="button" className={s.tag} aria-label="complete" disabled={true}>
+        Complete
+    </button>
+);
 
 export default Tag;

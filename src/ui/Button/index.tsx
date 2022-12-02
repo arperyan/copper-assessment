@@ -1,7 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React from 'react';
 
-import styles from "./button.module.css";
+import styles from './button.module.css';
 
 type Props = {
     label: string;
@@ -10,20 +9,15 @@ type Props = {
     type: string;
 };
 
-const Button: React.FC<Props> = ({ label, disabled = false, onPress, type }) => {
-    const dispatch = useDispatch();
-
-    return (
-        <button
-            className={`${styles[type]} ${styles.ripple}`}
-            type="button"
-            aria-label={label}
-            disabled={disabled}
-            onClick={onPress}
-        >
-            {label}
-        </button>
-    );
-};
+const Button: React.FC<Props> = ({ label, disabled = false, onPress, type }) => (
+    <button
+        className={`${styles[type]} ${styles.ripple}`}
+        type="button"
+        aria-label={label}
+        disabled={disabled}
+        onClick={onPress}>
+        {label}
+    </button>
+);
 
 export default Button;

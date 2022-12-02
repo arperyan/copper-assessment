@@ -8,7 +8,7 @@ import { Button, Input, Icon, Tag } from '@/ui';
 
 import { OrderItems } from '@/types';
 
-import styles from './table.module.css';
+import s from './table.module.css';
 
 type Props = {
     rowData: OrderItems;
@@ -33,7 +33,7 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
     let { getConvertMonth, getConvertDay, getConvertTime } = convertDate(rowData.createdAt);
 
     return (
-        <tr className={isChecked && rowData.status !== 'executed' ? styles.rowActive : ''}>
+        <tr className={isChecked && rowData.status !== 'executed' ? s.rowActive : ''}>
             <td>
                 <Input
                     id={rowData.orderId.substring(0, 4)}
@@ -73,16 +73,16 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
                 </svg>
             </td>
             <td>
-                <div className={styles.portfolioName}>{rowData.portfolioName}</div>
+                <div className={s.portfolioName}>{rowData.portfolioName}</div>
             </td>
             <td>
-                <div className={styles.currency}>
+                <div className={s.currency}>
                     <Icon name={rowData.baseCurrency}></Icon>
-                    <div className={styles.grow}>
-                        <div className={styles.currency_name}>{rowData.baseName}</div>
-                        <div className={styles.currency_small}>{rowData.baseCurrency}</div>
+                    <div className={s.grow}>
+                        <div className={s.currency_name}>{rowData.baseName}</div>
+                        <div className={s.currency_small}>{rowData.baseCurrency}</div>
                     </div>
-                    <div className={styles.arrow}>
+                    <div className={s.arrow}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             height="24px"
@@ -94,26 +94,26 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
                         </svg>
                     </div>
                     <Icon name={rowData.quoteCurrency}></Icon>
-                    <div className={styles.grow}>
-                        <div className={styles.currency_name}>{rowData.quoteName}</div>
-                        <div className={styles.currency_small}>{rowData.quoteCurrency}</div>
+                    <div className={s.grow}>
+                        <div className={s.currency_name}>{rowData.quoteName}</div>
+                        <div className={s.currency_small}>{rowData.quoteCurrency}</div>
                     </div>
                 </div>
             </td>
             <td>
-                <div className={styles.grow}>
-                    <div className={styles.amount_name}>
+                <div className={s.grow}>
+                    <div className={s.amount_name}>
                         <span>{rowData.amount}</span>
-                        <span className={styles.currency_small__amount}>{rowData.baseCurrency}</span>
+                        <span className={s.currency_small__amount}>{rowData.baseCurrency}</span>
                     </div>
-                    <div className={styles.currency_small}>
+                    <div className={s.currency_small}>
                         {rowData.quoteAmount}
-                        <span className={styles.currency_small__amount}>{rowData.quoteCurrency}</span>
+                        <span className={s.currency_small__amount}>{rowData.quoteCurrency}</span>
                     </div>
                 </div>
             </td>
             {rowData.status !== 'executed' && (
-                <td className={styles.buttongroup}>
+                <td className={s.buttongroup}>
                     <Button
                         label="Reject"
                         type="reject"
@@ -129,7 +129,7 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
                 </td>
             )}
             {rowData.status === 'executed' && (
-                <td className={styles.buttongroup}>
+                <td className={s.buttongroup}>
                     <Tag />
                 </td>
             )}

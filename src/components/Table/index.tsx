@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectedGroupCount } from '@/redux/ordersSlice';
@@ -9,7 +9,7 @@ import Messages from '../Messages';
 
 import type { OrderItems, RootState } from '@/types';
 
-import styles from './table.module.css';
+import s from './table.module.css';
 
 type Props = {
     theadData: string[];
@@ -28,8 +28,9 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
 
         dispatch(selectedGroupCount({ value: event.target.checked ? allOrderSelected : [] }));
     };
+
     return (
-        <table className={styles.table_container}>
+        <table className={s.table_container}>
             <thead>
                 <tr>
                     <th>
@@ -42,18 +43,21 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
                             isChecked={isAllChecked}
                             onInputChange={getCheckBoxAllInput}></Input>
                     </th>
-                    {theadData.map((headerItem, i) => {
-                        return <TableHeader key={`header-${i}`} headerItem={headerItem} />;
-                    })}
+                    {theadData.map((headerItem) => (
+                        <TableHeader key={`header-${headerItem}`} headerItem={headerItem} />
+                    ))}
                 </tr>
             </thead>
             {!loading && orders.length === 0 && <Messages message="No Transactions" />}
+
             {loading && <Messages message="Loading..." />}
+
             {hasErrors && <Messages message="Error while loading..." />}
+
             <tbody>
-                {orders.map((rowData, i) => {
-                    return <TableRow key={rowData.orderId} rowData={rowData} isAllChecked={isAllChecked}></TableRow>;
-                })}
+                {orders.map((rowData, i) => (
+                    <TableRow key={rowData.orderId} rowData={rowData} isAllChecked={isAllChecked} />
+                ))}
             </tbody>
         </table>
     );

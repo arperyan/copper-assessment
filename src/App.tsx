@@ -1,12 +1,11 @@
-import styles from "./App.module.css";
-import Layout from "./components/Layout";
+import Layout from './components/Layout';
 
-const App = () => {
-    return (
-        <div className={styles.wrapper}>
-            <Layout />
-        </div>
-    );
-};
+import s from './App.module.css';
+
+const App = () => (
+    <div className={s.wrapper}>
+        <Layout />
+    </div>
+);
 
 export default App;
