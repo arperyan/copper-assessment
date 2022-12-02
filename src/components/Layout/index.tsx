@@ -1,18 +1,17 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { GetOrders, UpdateBulkOrder } from "../../api";
-import Table from "../Table";
-import Button from "../../ui/Button";
-import Spinner from "../../ui/Spinner";
+import { GetOrders, UpdateBulkOrder } from '@/api';
+import Table from '../Table';
+import { Button, Spinner } from '@/ui';
 
-import type { RootState } from "../../types";
+import type { RootState } from '@/types';
 
-import styles from "./index.module.css";
+import styles from './layout.module.css';
 
 const Layout: React.FC = () => {
     const dispatch = useDispatch();
-    const theadData = ["Date", "Buy/Sell", "Account", "Currency", "Amount", "Action"];
+    const theadData = ['Date', 'Buy/Sell', 'Account', 'Currency', 'Amount', 'Action'];
 
     useEffect(() => {
         dispatch(GetOrders());
@@ -32,17 +31,17 @@ const Layout: React.FC = () => {
                 <div className={styles.figures_container}>
                     <div className={styles.figures_container_title}>
                         <div className={styles.figures_container_title__order}>
-                            {orderSelected.length > 0 ? "Selected orders" : "All orders"}
+                            {orderSelected.length > 0 ? 'Selected orders' : 'All orders'}
                         </div>
                         <div className={styles.figures_container_title__value}>{tickCount}</div>
                     </div>
                     <div className={styles.vertical_line}></div>
                     <div className={styles.figures_container_title__longer}>
                         <div className={styles.figures_container_title__amount}>
-                            {orderSelected.length > 0 ? "Total selected amount" : "Total amount"}
+                            {orderSelected.length > 0 ? 'Total selected amount' : 'Total amount'}
                         </div>
                         <div className={styles.figures_container_title__value}>
-                            {loading ? "0.00" : orderAmount} USD
+                            {loading ? '0.00' : orderAmount} USD
                         </div>
                     </div>
                 </div>
@@ -56,13 +55,12 @@ const Layout: React.FC = () => {
                                 orderSelected.length
                                     ? dispatch(
                                           UpdateBulkOrder({
-                                              updateType: "bulk-reject",
+                                              updateType: 'bulk-reject',
                                               orderIds: orderSelected,
                                           })
                                       )
-                                    : "";
-                            }}
-                        >
+                                    : '';
+                            }}>
                             Reject
                         </Button>
                         <Button
@@ -73,13 +71,12 @@ const Layout: React.FC = () => {
                                 orderSelected.length
                                     ? dispatch(
                                           UpdateBulkOrder({
-                                              updateType: "bulk-approve",
+                                              updateType: 'bulk-approve',
                                               orderIds: orderSelected,
                                           })
                                       )
-                                    : "";
-                            }}
-                        >
+                                    : '';
+                            }}>
                             Accept
                         </Button>
                     </div>

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { selectedGroupCount } from "../../redux/ordersSlice";
-import TableRow from "./TableRow";
-import TableHeader from "./TableHeader";
-import Input from "../../ui/Input";
-import Messages from "../Messages";
+import { selectedGroupCount } from '@/redux/ordersSlice';
+import TableRow from './TableRow';
+import TableHeader from './TableHeader';
+import { Input } from '@/ui';
+import Messages from '../Messages';
 
-import type { OrderItems, RootState } from "../../types";
+import type { OrderItems, RootState } from '@/types';
 
-import styles from "./index.module.css";
+import styles from './table.module.css';
 
 type Props = {
     theadData: string[];
@@ -40,8 +40,7 @@ const Table: React.FC<Props> = ({ theadData, orders }) => {
                             name="All selected"
                             isActive={orderSelected.length > 0 ? true : false}
                             isChecked={isAllChecked}
-                            onInputChange={getCheckBoxAllInput}
-                        ></Input>
+                            onInputChange={getCheckBoxAllInput}></Input>
                     </th>
                     {theadData.map((headerItem, i) => {
                         return <TableHeader key={`header-${i}`} headerItem={headerItem} />;

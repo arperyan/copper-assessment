@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { selectedCount } from "../../redux/ordersSlice";
-import { convertDate } from "../../util";
-import { UpdateOrder } from "../../api";
-import Button from "../../ui/Button";
-import Input from "../../ui/Input";
-import Icon from "../../ui/Icon";
-import Tag from "../../ui/Tag";
+import { selectedCount } from '@/redux/ordersSlice';
+import { convertDate } from '@/util/helper';
+import { UpdateOrder } from '@/api';
+import { Button, Input, Icon, Tag } from '@/ui';
 
-import { OrderItems } from "../../types";
+import { OrderItems } from '@/types';
 
-import styles from "./index.module.css";
+import styles from './table.module.css';
 
 type Props = {
     rowData: OrderItems;
@@ -36,17 +33,16 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
     let { getConvertMonth, getConvertDay, getConvertTime } = convertDate(rowData.createdAt);
 
     return (
-        <tr className={isChecked && rowData.status !== "executed" ? styles.rowActive : ""}>
+        <tr className={isChecked && rowData.status !== 'executed' ? styles.rowActive : ''}>
             <td>
                 <Input
                     id={rowData.orderId.substring(0, 4)}
                     value={rowData.orderId}
                     type="checkbox"
                     name="Order Selector"
-                    isChecked={rowData.status === "executed" ? false : isChecked}
-                    isDisabled={rowData.status === "executed" ? true : false}
-                    onInputChange={getCheckBoxInput}
-                ></Input>
+                    isChecked={rowData.status === 'executed' ? false : isChecked}
+                    isDisabled={rowData.status === 'executed' ? true : false}
+                    onInputChange={getCheckBoxInput}></Input>
             </td>
             <td>
                 <svg width="40" height="49">
@@ -61,15 +57,14 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
             </td>
             <td>
                 <svg width="40" height="49">
-                    <circle cx="50%" cy="40%" r="12" fill={rowData.orderType[0] === "b" ? "#D2FFD8" : "#FFECD2"} />
+                    <circle cx="50%" cy="40%" r="12" fill={rowData.orderType[0] === 'b' ? '#D2FFD8' : '#FFECD2'} />
                     <text
                         x="50%"
                         y="45%"
                         dominantBaseline="middle"
                         textAnchor="middle"
                         fontSize="16"
-                        fill={rowData.orderType[0] === "b" ? "#28CF3E" : "#FFA428"}
-                    >
+                        fill={rowData.orderType[0] === 'b' ? '#28CF3E' : '#FFA428'}>
                         {rowData.orderType[0].toUpperCase()}
                     </text>
                     <text x="50%" y="90%" dominantBaseline="middle" textAnchor="middle" fontSize="9">
@@ -77,7 +72,9 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
                     </text>
                 </svg>
             </td>
-            <td>{rowData.portfolioName}</td>
+            <td>
+                <div className={styles.portfolioName}>{rowData.portfolioName}</div>
+            </td>
             <td>
                 <div className={styles.currency}>
                     <Icon name={rowData.baseCurrency}></Icon>
@@ -91,8 +88,7 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
-                            fill="#000000"
-                        >
+                            fill="#000000">
                             <rect fill="none" height="24" width="24" />
                             <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
                         </svg>
@@ -116,21 +112,23 @@ const TableRow: React.FC<Props> = ({ rowData, isAllChecked }) => {
                     </div>
                 </div>
             </td>
-            {rowData.status !== "executed" && (
+            {rowData.status !== 'executed' && (
                 <td className={styles.buttongroup}>
                     <Button
                         label="Reject"
                         type="reject"
-                        onPress={() => dispatch(UpdateOrder({ updateType: "reject", orderId: rowData.orderId }))}
-                    ></Button>
+                        onPress={() =>
+                            dispatch(UpdateOrder({ updateType: 'reject', orderId: rowData.orderId }))
+                        }></Button>
                     <Button
                         label="Approve"
                         type="accept"
-                        onPress={() => dispatch(UpdateOrder({ updateType: "approve", orderId: rowData.orderId }))}
-                    ></Button>
+                        onPress={() =>
+                            dispatch(UpdateOrder({ updateType: 'approve', orderId: rowData.orderId }))
+                        }></Button>
                 </td>
             )}
-            {rowData.status === "executed" && (
+            {rowData.status === 'executed' && (
                 <td className={styles.buttongroup}>
                     <Tag />
                 </td>
